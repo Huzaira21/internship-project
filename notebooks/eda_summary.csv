@@ -1,0 +1,9 @@
+Metric,Value
+Total Images,8091.0
+Total Captions,40455.0
+Avg Captions/Image,5.0
+Vocabulary Size,8918.0
+Avg Caption Length,11.78
+Duplicate Captions,448.0
+Blank/Short Captions,17.0
+Corrupted Images,0.0
