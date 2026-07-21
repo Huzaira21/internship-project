@@ -1,0 +1,4 @@
+run_name,train_size,learning_rate,epochs,num_beams,avg_train_loss,avg_val_bleu
+exp1_lr5e5_greedy,15,5e-05,1,1,8.313226674732409,0.2657569088493529
+exp2_lr1e4_greedy,15,0.0001,1,1,7.249126660196405,0.1400229830142984
+exp3_lr5e5_beamsearch,15,5e-05,1,3,8.423087923150314,0.28385829529818696
