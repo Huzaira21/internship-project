@@ -1,0 +1,16 @@
+image,generated_caption,ground_truth_caption_primary,bleu_score,category
+1187593464_ce862352c6.jpg,a dog running with a stick in its mouth,A big tan dog runs on grass with a big stick in his mouth .,1.0,good
+1235681222_819231767a.jpg,people sitting on benches in a public area,A person in a blue shirt sits behind two people sitting on a wood bench .,1.0,good
+1000268201_693b08cb0e.jpg,a little girl in a pink dress,A child in a pink dress is climbing up a set of stairs in an entry way .,0.8668778997501817,good
+1119418776_58e4b93eac.jpg,a dog running in a field,A black and white dog is running through the field .,0.846481724890614,good
+1048710776_bb5b0a5c7c.jpg,a group of people sitting on a wall,a couple of several people sitting on a ledge overlooking the beach,0.7598356856515925,good
+1093737381_b313cd49ff.jpg,a woman standing in front of a red building,A woman in a blue dress stands with a chalk portrait of two children playing by a stream .,0.7259795291154771,good
+1189977786_4f5aaed773.jpg,a dog jumping into a pool,A dog jumping into a swimming pool .,0.7165313105737893,good
+101654506_8eb26cfb60.jpg,a dog running in the snow,A brown and white dog is running through the snow .,0.7071067811865475,good
+1030985833_b0902ea560.jpg,two dogs playing,A black dog and a brown dog are jumping up to catch a red toy .,0.0,poor
+109738916_236dc456ac.jpg,snow covered trees,People are riding around on snowmobiles .,0.0,poor
+109823394_83fcb735e1.jpg,a man riding a quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad quad,Three people drive ATVs .,0.012518377344512808,poor
+1093716555_801aacef79.jpg,a clear blue sky,a group of backpackers lay on the dry ground .,0.01748631038720509,poor
+1022454332_6af2c1449a.jpg,a body of water,A child and a woman are at waters edge in a big city .,0.017922759459377886,poor
+1016887272_03199f49c4.jpg,a large rock wall,A collage of one person climbing a cliff .,0.02301327868302185,poor
+1142283988_6b227c5231.jpg,a woman hugging a man,A blond woman poses with a person in a pink costume .,0.025112264761865913,poor
