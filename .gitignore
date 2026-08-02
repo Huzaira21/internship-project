@@ -221,3 +221,5 @@ data/processed/images/
 mlruns/ 
 mlflow.db 
 data/processed/blip_finetuned_lite/ 
+app/uploads/ 
+app/outputs/ 
