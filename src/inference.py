@@ -7,13 +7,17 @@ from nltk.tokenize import word_tokenize
 _smoothie = SmoothingFunction().method4
 
 
-def generate_caption(image_path, processor, model, device, max_new_tokens=30, num_beams=1):
+def generate_caption(
+    image_path, processor, model, device, max_new_tokens=30, num_beams=1
+):
     """Generate a caption for a single image."""
-    raw_image = Image.open(image_path).convert('RGB')
+    raw_image = Image.open(image_path).convert("RGB")
     inputs = processor(raw_image, return_tensors="pt").to(device)
 
     if num_beams > 1:
-        out = model.generate(**inputs, max_new_tokens=max_new_tokens, num_beams=num_beams)
+        out = model.generate(
+            **inputs, max_new_tokens=max_new_tokens, num_beams=num_beams
+        )
     else:
         out = model.generate(**inputs, max_new_tokens=max_new_tokens)
 
