@@ -2,16 +2,20 @@
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 import shutil
 import uuid
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
-
 from src.model import load_blip_model
 from src.inference import generate_caption
-from src.xai import register_gradcam_hooks, generate_gradcam, overlay_heatmap
+from src.xai import (
+    register_gradcam_hooks,
+    generate_gradcam,
+    overlay_heatmap,
+)
 import cv2
 
 app = FastAPI(title="Image Captioning API")
@@ -48,7 +52,4 @@ async def caption_image(file: UploadFile = File(...)):
     output_path = os.path.join(OUTPUT_DIR, output_filename)
     cv2.imwrite(output_path, cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
 
-    return JSONResponse({
-        "caption": caption,
-        "gradcam_overlay_path": output_path
-    })
+    return JSONResponse({"caption": caption, "gradcam_overlay_path": output_path})
