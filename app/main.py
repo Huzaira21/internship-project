@@ -5,15 +5,18 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-import shutil  # noqa: E402
-import uuid  # noqa: E402
-from fastapi import FastAPI, File, UploadFile  # noqa: E402
-from fastapi.responses import JSONResponse  # noqa: E402
-
-from src.model import load_blip_model  # noqa: E402
-from src.inference import generate_caption  # noqa: E402
-from src.xai import register_gradcam_hooks, generate_gradcam, overlay_heatmap  # noqa: E402
-import cv2  # noqa: E402
+import shutil
+import uuid
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import JSONResponse
+from src.model import load_blip_model
+from src.inference import generate_caption
+from src.xai import (
+    register_gradcam_hooks,
+    generate_gradcam,
+    overlay_heatmap,
+)
+import cv2
 
 app = FastAPI(title="Image Captioning API")
 
