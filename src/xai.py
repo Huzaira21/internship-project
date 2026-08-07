@@ -10,14 +10,17 @@ _gradients = {}
 
 def register_gradcam_hooks(model):
     """Register forward/backward hooks on the last layer of the vision encoder."""
+
     def save_activation(name):
         def hook(module, input, output):
             _activations[name] = output
+
         return hook
 
     def save_gradient(name):
         def hook(module, grad_input, grad_output):
             _gradients[name] = grad_output[0]
+
         return hook
 
     target_layer = model.vision_model.encoder.layers[-1]
@@ -27,14 +30,14 @@ def register_gradcam_hooks(model):
 
 def generate_gradcam(image_path, processor, model, device):
     """Generate a Grad-CAM heatmap for a single image."""
-    raw_image = Image.open(image_path).convert('RGB')
+    raw_image = Image.open(image_path).convert("RGB")
     inputs = processor(raw_image, return_tensors="pt").to(device)
 
     outputs = model.generate(**inputs, max_new_tokens=20)
     generated_caption = processor.decode(outputs[0], skip_special_tokens=True)
 
     model.zero_grad()
-    pixel_values = inputs['pixel_values']
+    pixel_values = inputs["pixel_values"]
     pixel_values.requires_grad_()
 
     vision_outputs = model.vision_model(pixel_values=pixel_values)
@@ -51,7 +54,7 @@ def generate_gradcam(image_path, processor, model, device):
     cam = cam / (cam.max() + 1e-8)
 
     num_patches = int(np.sqrt(cam.shape[0]))
-    cam_map = cam[-(num_patches**2):].reshape(num_patches, num_patches)
+    cam_map = cam[-(num_patches**2) :].reshape(num_patches, num_patches)
     cam_resized = cv2.resize(cam_map, (raw_image.width, raw_image.height))
 
     return raw_image, cam_resized, generated_caption
@@ -67,7 +70,7 @@ def overlay_heatmap(raw_image, cam_resized, alpha=0.5):
 
 def occlusion_importance(image_path, processor, model, device, patch_size=32):
     """Compute a simple occlusion-based importance map for an image."""
-    raw_image = Image.open(image_path).convert('RGB').resize((224, 224))
+    raw_image = Image.open(image_path).convert("RGB").resize((224, 224))
     img_array = np.array(raw_image)
 
     inputs = processor(raw_image, return_tensors="pt").to(device)
@@ -80,9 +83,11 @@ def occlusion_importance(image_path, processor, model, device, patch_size=32):
     for i in range(0, h, patch_size):
         for j in range(0, w, patch_size):
             occluded = img_array.copy()
-            occluded[i:i+patch_size, j:j+patch_size] = 128
+            occluded[i : i + patch_size, j : j + patch_size] = 128
 
-            occ_inputs = processor(Image.fromarray(occluded), return_tensors="pt").to(device)
+            occ_inputs = processor(Image.fromarray(occluded), return_tensors="pt").to(
+                device
+            )
             occ_out = model.generate(**occ_inputs, max_new_tokens=20)
             occ_caption = processor.decode(occ_out[0], skip_special_tokens=True)
 
