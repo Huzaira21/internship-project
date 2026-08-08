@@ -10,7 +10,11 @@ import cv2  # noqa: E402
 
 from src.model import load_blip_model  # noqa: E402
 from src.inference import generate_caption  # noqa: E402
-from src.xai import register_gradcam_hooks, generate_gradcam, overlay_heatmap  # noqa: E402
+from src.xai import (
+    register_gradcam_hooks,
+    generate_gradcam,
+    overlay_heatmap,
+)  # noqa: E402
 
 processor, model, device = load_blip_model()
 register_gradcam_hooks(model)
@@ -24,7 +28,9 @@ def process_image(image):
     caption = generate_caption(temp_path, processor, model, device)
     raw_image, cam_resized, _ = generate_gradcam(temp_path, processor, model, device)
     overlay = overlay_heatmap(raw_image, cam_resized)
-    overlay_rgb = cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB) if overlay.shape[-1] == 3 else overlay
+    overlay_rgb = (
+        cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB) if overlay.shape[-1] == 3 else overlay
+    )
 
     return caption, overlay_rgb
 
